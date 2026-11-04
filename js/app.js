@@ -66,13 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Filters support
-  const filters = document.querySelectorAll('.filter-btn, [data-filter]');
+ // Filters support
+  const filters = document.querySelectorAll('#filter-all, #filter-active, #filter-done, .filter-btn, [data-filter]');
   filters.forEach(btn => {
     btn.addEventListener('click', () => {
       filters.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter') || btn.textContent.toLowerCase();
+      const filter = btn.id || btn.getAttribute('data-filter') || btn.textContent.toLowerCase();
       
       if (!list) return;
       const items = list.querySelectorAll('li');
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isCompleted = li.classList.contains('completed');
         if (filter.includes('active')) {
           li.style.display = isCompleted ? 'none' : '';
-        } else if (filter.includes('completed')) {
+        } else if (filter.includes('done') || filter.includes('completed')) {
           li.style.display = isCompleted ? '' : 'none';
         } else {
           li.style.display = '';
