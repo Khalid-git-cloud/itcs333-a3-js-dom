@@ -50,8 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (list) {
-    list.addEventListener('click', (e) => {
+const todoList = document.querySelector('#todo-list');
+  if (todoList) {
+    todoList.addEventListener('click', (e) => {
       const target = e.target;
       const li = target.closest('li');
       if (!li) return;
